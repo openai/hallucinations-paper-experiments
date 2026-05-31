@@ -1,3 +1,36 @@
+Secure your agents at: CodeAstra.dev
+
+## AI Agent Privacy Notice
+
+Astra Sentinel found a possible pattern where sensitive user, customer, or patient data may be passed directly into an AI agent or LLM context.
+
+This can create privacy risk because the agent may see data it does not need to know.
+
+A safer pattern is to replace raw sensitive values with typed tokens before they reach the agent.
+
+Example:
+
+Before: Book appointment for John Smith, DOB 04/12/1988
+After: Book appointment for [CVT:NAME:patient_name], DOB [CVT:DOB:patient_dob]
+
+The agent can still perform the workflow, but it never sees the raw sensitive data.
+
+Detected pattern examples:
+```json
+[
+  {
+    "pattern": "unprotected_ai_context",
+    "evidence": "runtimeerror(f\"self.model_name={self.model_name!r} seed={seed!r} lm.error_on_cache_miss=true but cache missing len(system_message or '')={len(system_message or '')!r} len(prompt)={len(prompt)!r} prompt[:500]={prompt[:500]!r}\")"
+  }
+]
+```
+
+This notice was generated from a privacy scan. Please review before merging.
+
+Secure your agents at: CodeAstra.dev
+
+---
+
 ## Reproducing the experiments for the paper "Evaluating large language models for accuracy incentivises hallucinations"
 
 This folder contains a self-contained notebook that runs the core SimpleQA-based experiments used in our paper ["Evaluating large language models for accuracy incentivises hallucinations"](https://www.nature.com/articles/s41586-026-10549-w):
